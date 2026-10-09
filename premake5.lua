@@ -4,8 +4,8 @@ project "GLFW"
 	staticruntime "On"
 	warnings "off"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("../../../bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("../../../bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
@@ -100,20 +100,23 @@ project "GLFW"
 
 	filter "configurations:Debug"
 		runtime "Debug"
+		buildoptions "/MDd"
 		symbols "on"
 
-	filter { "system:windows", "configurations:Debug-AS" }	
-		runtime "Debug"
-		symbols "on"
-		sanitize { "Address" }
-		runtimechecks "Off"
-		incrementallink "Off"
+	--filter { "system:windows", "configurations:Debug-AS" }	
+	--	runtime "Debug"
+	--	symbols "on"
+	--	sanitize { "Address" }
+	--	runtimechecks "Off"
+	--	incrementallink "Off"
 
 	filter "configurations:Release"
 		runtime "Release"
+		buildoptions "/MD"
 		optimize "speed"
 
     filter "configurations:Dist"
 		runtime "Release"
+		buildoptions "/MD"
 		optimize "speed"
         symbols "off"
